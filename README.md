@@ -15,12 +15,8 @@ This comprehensive guide is here to equip you with everything you need to use `Y
 
 # YouTube_Downloader
 
-The `Youtube_Downloader` is a Python class designed to provide financial market insights through
-various functionalities including retrieving stock news,
-fetching historical stock data, generating text based on prompts,
-and analyzing the sentiment of given texts as well as act like a basic language model.
-It leverages external libraries such as `requests`, `BeautifulSoup`, `yfinance`, and `transformers` 
-from Hugging Face to perform these tasks efficiently.
+The `Youtube_Downloader` is a Python class designed to download great quality YouTube videos,
+with the ability to download multiple videos at once.
 
 ## Prerequisites
 
