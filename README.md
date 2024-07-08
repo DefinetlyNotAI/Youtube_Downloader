@@ -1,7 +1,7 @@
 # Youtube_Downloader 📎
 
 Welcome to `Youtube_Downloader` 🌐,
-Crafted with python and Hugging Face 🐍, by DefinetlyNotAI 🤗.
+Crafted with python 🐍, by DefinetlyNotAI.
 This comprehensive guide is here to equip you with everything you need to use `Youtube_Downloader` effectively.
 
 <div align="center">
