@@ -38,7 +38,22 @@ pip install -r requirements.txt
 
 ## Usage
 
+To use the `Youtube_Downloader` class, simply instantiate it with the desired URL and download the video.
+You may use as many `--url` arguments as you want.
 
+```bash
+python YD.py --url "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+```
+or
+```bash
+python YD.py --url "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --url "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
+```
+
+Videos maintain the name's of the author and title of the video.
+
+### Video Resolution
+
+640 x 360 at 25 frames per second is the usual resolution that the videos are downloaded.
 
 ## Contributing
 
