@@ -1,20 +1,38 @@
 import argparse
 from pytube import YouTube
+import colorlog
 from tqdm import tqdm
+
+# Configure colorlog for logging messages with colors
+logger = colorlog.getLogger()
+logger.setLevel(colorlog.INFO)  # Set the log level to INFO to capture all relevant logs
+
+handler = colorlog.StreamHandler()
+formatter = colorlog.ColoredFormatter(
+    "%(log_color)s%(levelname)-8s%(reset)s %(blue)s%(message)s",
+    datefmt=None,
+    reset=True,
+    log_colors={
+        "DEBUG": "cyan",
+        "INFO": "green",
+        "WARNING": "yellow",
+        "ERROR": "red",
+        "CRITICAL": "red",
+    },
+)
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 
 def download_video(url, output_path):
     """
     Downloads a YouTube video from the given URL and saves it to the specified output path,
-    displaying a progress bar and the video title.
+    displaying a progress bar and the video title upon completion.
     """
     yt = YouTube(url)
     video = yt.streams.get_highest_resolution()
-    pbar = tqdm(total=video.filesize, unit='B', unit_scale=True, desc=f'Downloading {yt.title}')
-    video.register_on_progress_callback(lambda event: pbar.update(event.bytes_read))
     video.download(output_path)
-    pbar.close()
-    print(f"{yt.title} downloaded successfully.")
+    colorlog.info(f"{yt.title} downloaded successfully.")
 
 
 def parse_arguments():
@@ -42,15 +60,16 @@ def main():
     else:
         urls = args.yt
 
-    for url in urls:
+    for url in tqdm(urls, desc="Downloading videos"):
         try:
             download_video(url, args.to)
-            print("Download completed.")
+            colorlog.info("Download completed.")
         except Exception as e:
-            if e == "get_throttling_function_name: could not find match for multiple":
-                print("Video could not be downloaded due to an error with the API of YouTube")
+            colorlog.debug(e)
+            if str(e) == "get_throttling_function_name: could not find match for multiple":
+                colorlog.critical("Video could not be downloaded due to an error with the API of YouTube")
             else:
-                print(f"Failed to download video: {e}")
+                colorlog.error(f"Failed to download video: {e}")
 
 
 if __name__ == "__main__":
