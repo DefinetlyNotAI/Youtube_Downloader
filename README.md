@@ -42,17 +42,17 @@ To use the `Youtube_Downloader` class, simply instantiate it with the desired UR
 You may use as many `--url` arguments as you want, you will see the name of the video downloading.
 
 ```bash
-python YD.py --yt "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+python download.py --url "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 ```
 or
 ```bash
-python YD.py --yt "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --yt "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
+python download.py --url "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --yt "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
 ```
 
 You may also use a txt file as well as decide where to save the videos.
 
 ```bash
-python YD.py --txt C:\DIRECTORY\WITH\THE\TXT\FILE.txt --to C:\Downloads
+python download.py --from-txt C:\DIRECTORY\WITH\THE\TXT\FILE.txt --to C:\Downloads
 ```
 
 If the `--to` flags directory doesn't exist it will create one for you!
