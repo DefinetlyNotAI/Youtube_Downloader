@@ -1,5 +1,5 @@
 import argparse
-from pytube import YouTube
+from pytubefix import YouTube
 import colorlog
 from tqdm import tqdm
 
@@ -40,13 +40,13 @@ def parse_arguments():
     Parses command-line arguments.
     """
     parser = argparse.ArgumentParser(description="Download YouTube videos.")
-    parser.add_argument('--yt', nargs='+', required=True,
+    parser.add_argument('--url', nargs='+', required=True,
                         help='URL of the YouTube video to download. Use --yt multiple times to add more.')
     parser.add_argument('--to', default='./',
                         help='Directory path where the downloaded videos should be saved. Creates the directory if it doesn\'t exist. Defaults to current working directory.')
 
     group = parser.add_mutually_exclusive_group(required=False)
-    group.add_argument('--txt', type=argparse.FileType('r'),
+    group.add_argument('--from-txt', type=argparse.FileType('r'),
                        help='Path to a text file containing YouTube video URLs, one URL per line.')
 
     return parser.parse_args()
@@ -55,10 +55,10 @@ def parse_arguments():
 def main():
     args = parse_arguments()
 
-    if args.txt:
-        urls = [line.strip() for line in args.txt.readlines()]
+    if args.from_txt:
+        urls = [line.strip() for line in args.from_txt.readlines()]
     else:
-        urls = args.yt
+        urls = args.url
 
     for url in tqdm(urls, desc="Downloading videos"):
         try:
